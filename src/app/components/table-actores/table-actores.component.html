@@ -1,0 +1,28 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let actor of actores">
+        <td>{{ actor.nombre }}</td>
+        <td>{{ actor.apellido }}</td>
+        <td>{{ actor.email }}</td>
+        <td>
+          <button class="btn btn-sm btn-danger" (click)="verPeliculas(actor)">
+            Pelicula
+          </button>
+          <button class="btn btn-sm btn-success" (click)="verPais(actor)">
+            Pais
+          </button>
+          <button class="btn btn-sm btn-info" (click)="verMas(actor)">
+            Ver mas
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

@@ -1,0 +1,14 @@
+<div *ngIf="actorPais" class="card">
+    <img
+      *ngIf="actorPais.flag"
+      [src]="actorPais.flag"
+      class="card-img-top"
+      alt="{{ actorPais.nombrePais }}"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ actorPais.nombrePais }}</h5>
+      <p class="card-text">Region: {{ actorPais.region }}</p>
+      <p class="card-text">Idioma: {{ actorPais.languages }}</p>
+      <p class="card-text">Usuario: {{ actorPais.usuario }}</p>
+    </div>
+  </div>

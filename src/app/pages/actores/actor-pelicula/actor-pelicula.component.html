@@ -1,32 +1,10 @@
 <section class="py-5 text-center container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Nombre</th>
-        <th scope="col">Apellido</th>
-        <th scope="col">Correo</th>
-        <th scope="col">Acción</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let actor of actores">
-        <td>{{ actor.nombre }}</td>
-        <td>{{ actor.apellido }}</td>
-        <td>{{ actor.email }}</td>
-        <td>
-          <button class="btn btn-sm btn-danger" (click)="verPeliculas(actor)">
-            Pelicula
-          </button>
-          <button class="btn btn-sm btn-success" (click)="verPais(actor)">
-            Pais
-          </button>
-          <button class="btn btn-sm btn-info" (click)="verMas(actor)">
-            Ver mas
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <app-table-actores
+    [actores]="actores"
+    (verPeliculasClick)="verPeliculas($event)"
+    (verPaisClick)="verPais($event)"
+    (verMasClick)="verMas($event)"
+  />
 </section>
 
 <main>
@@ -34,70 +12,15 @@
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col">
-          <div class="accordion" id="accordionExample">
-            <div
-              *ngFor="let pelicula of actorPelicula; let i = index"
-              class="accordion-item"
-            >
-              <h2 class="accordion-header">
-                <button
-                  class="accordion-button"
-                  type="button"
-                  (click)="toggleAccordion(i)"
-                >
-                  {{ pelicula.titulo }}
-                </button>
-              </h2>
-              <div
-                [id]="'collapse' + i"
-                class="accordion-collapse collapse"
-                [ngClass]="{ show: openedIndex === i }"
-              >
-                <div class="accordion-body">
-                  <img
-                    [src]="pelicula.imagen"
-                    class="card-img-top"
-                    alt="{{ pelicula.titulo }}"
-                  />
-                  <strong>Descripción:</strong> {{ pelicula.descripcion }}<br />
-                  <strong>Género:</strong> {{ pelicula.genero }}<br />
-                  <strong>Año de lanzamiento:</strong>
-                  {{ pelicula.anioDeLanzamiento }}<br />
-                  <!-- Agrega más campos aquí -->
-                </div>
-              </div>
-            </div>
-          </div>
+          <app-acordeon-pelicula [actorPelicula]="actorPelicula" />
         </div>
 
         <div class="col">
-          <div *ngIf="actorPais" class="card">
-            <img
-              *ngIf="actorPais.flag"
-              [src]="actorPais.flag"
-              class="card-img-top"
-              alt="{{ actorPais.nombrePais }}"
-            />
-            <div class="card-body">
-              <h5 class="card-title">{{ actorPais.nombrePais }}</h5>
-              <p class="card-text">Region: {{ actorPais.region }}</p>
-              <p class="card-text">Idioma: {{ actorPais.languages }}</p>
-              <p class="card-text">Usuario: {{ actorPais.usuario }}</p>
-            </div>
-          </div>
+          <app-card-pais-actor [actorPais]="actorPais" />
         </div>
 
         <div class="col">
-          <div *ngIf="actorDetalles" class="card">
-            <div class="card-body">
-              <h5 class="card-title">{{ actorDetalles.usuario }}</h5>
-              <p class="card-text">nombre: {{ actorDetalles.nombre }}</p>
-              <p class="card-text">apellido: {{ actorDetalles.apellido }}</p>
-              <p class="card-text">correo: {{ actorDetalles.email }}</p>
-              <p class="card-text">pais: {{ actorDetalles.pais }}</p>
-              <p class="card-text">Dirreción: {{ actorDetalles.direccion }}</p>
-            </div>
-          </div>
+          <app-card-actor [actorDetalles]="actorDetalles" />
         </div>
       </div>
     </div>

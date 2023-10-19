@@ -17,11 +17,11 @@ export type ActorPais = {
   styleUrls: ['./actor-pelicula.component.scss'],
 })
 export class ActorPeliculaComponent implements OnInit {
-  actores: IActor[] = [];
+  actores!: IActor[];
   actorPais!: ActorPais;
   actorDetalles!: IActor;
   actorPelicula!: IPelicula[];
-  openedIndex = -1; // Inicialmente ninguna sección abierta
+  
 
  
   constructor(
@@ -65,11 +65,5 @@ export class ActorPeliculaComponent implements OnInit {
   verMas(actor: IActor) {
     this.actorDetalles = actor;
   }
-  toggleAccordion(index: number) {
-    if (this.openedIndex === index) {
-      this.openedIndex = -1; // Cierra la sección si ya está abierta
-    } else {
-      this.openedIndex = index; // Abre la sección con el índice especificado
-    }
-  }
+  
 }

@@ -1,0 +1,34 @@
+<div class="accordion" id="accordionExample">
+    <div
+      *ngFor="let pelicula of actorPelicula; let i = index"
+      class="accordion-item"
+    >
+      <h2 class="accordion-header">
+        <button
+          class="accordion-button"
+          type="button"
+          (click)="toggleAccordion(i)"
+        >
+          {{ pelicula.titulo }}
+        </button>
+      </h2>
+      <div
+        [id]="'collapse' + i"
+        class="accordion-collapse collapse"
+        [ngClass]="{ show: openedIndex === i }"
+      >
+        <div class="accordion-body">
+          <img
+            [src]="pelicula.imagen"
+            class="card-img-top"
+            alt="{{ pelicula.titulo }}"
+          />
+          <strong>Descripción:</strong> {{ pelicula.descripcion }}<br />
+          <strong>Género:</strong> {{ pelicula.genero }}<br />
+          <strong>Año de lanzamiento:</strong>
+          {{ pelicula.anioDeLanzamiento }}<br />
+          <!-- Agrega más campos aquí -->
+        </div>
+      </div>
+    </div>
+  </div>
