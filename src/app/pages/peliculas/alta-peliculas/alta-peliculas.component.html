@@ -1,0 +1,121 @@
+<div class="container">
+  <main>
+    <div class="row g-5 mt-1">
+      <div class="col-md-5 col-lg-4 order-md-last">
+        <app-tabla-actor
+          [pais]="peliculas.value.pais"
+          (seleccionar)="seleccionarActor($event)"
+        />
+      </div>
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Alta peliculas</h4>
+        <form
+          (ngSubmit)="addPelicula()"
+          [formGroup]="peliculas"
+          class="needs-validation"
+          novalidate
+        >
+          <div class="row g-3">
+            <div class="col-12">
+              <label for="titulo" class="form-label">Titulo</label>
+              <input
+                type="text"
+                class="form-control"
+                id="titulo"
+                placeholder=""
+                formControlName="titulo"
+              />
+              <div class="invalid-feedback">Ingrese Titulo correspondiente</div>
+            </div>
+
+            <div class="col-12">
+              <label for="descripcion" class="form-label">Descripcion</label>
+
+              <textarea
+                class="form-control"
+                id="descripcion"
+                rows="3"
+                formControlName="descripcion"
+              ></textarea>
+              <div class="invalid-feedback">
+                Ingrese Descripcion correspondiente
+              </div>
+            </div>
+
+            <div class="col-md-5">
+              <label for="genero" class="form-label">Genero</label>
+              <input
+                id="genero"
+                type="text"
+                class="form-control"
+                placeholder=""
+                formControlName="genero"
+              />
+              <div class="invalid-feedback">Ingrese genero</div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="anioDeLanzamiento" class="form-label"
+                >Lanzamiento</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                placeholder=""
+                formControlName="anioDeLanzamiento"
+              />
+
+              <div class="invalid-feedback">Por favor ingrese el año</div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="duracion" class="form-label">Duracion</label>
+              <input
+                type="text"
+                class="form-control"
+                id="duracion"
+                placeholder=""
+                formControlName="duracion"
+              />
+              <div class="invalid-feedback">Ingrese la duración</div>
+            </div>
+            <div class="col-12">
+              <h5>Actores</h5>
+              <div style="white-space: nowrap;">
+                <div *ngFor="let actor of actores" style="display: inline-block; white-space: normal; margin-right: 10px;">
+                  <span class="badge rounded-pill text-bg-primary" style="font-size: 18px;">
+                    {{ actor.nombre }}
+                    <button class="btn-delete" (click)="eliminarElemento(actor?.id)">X</button>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="image01n" class="form-label"
+                >Imagen de la pelicula
+                <span class="text-muted">(Opcional)</span></label
+              >
+              <input
+                type="file"
+                class="form-control"
+                id="image01n"
+                placeholder=""
+                (change)="uploadImage($event)"
+              />
+            </div>
+          </div>
+
+          <hr class="my-4" />
+          <button
+            class="w-100 btn btn-lg"
+            style="background-color: #0d689d; color: white"
+            type="submit"
+            [disabled]="!peliculas.valid"
+          >
+            Agregar
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>

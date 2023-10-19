@@ -1,0 +1,23 @@
+<section>
+    <h4 class="d-flex justify-content-between align-items-center mb-3">
+      <span class="text-primary">Lista de Actores</span>
+    </h4>
+    <form class="card p-2">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Promo code" />
+        <button type="submit" class="btn btn-secondary">Redeem</button>
+      </div>
+    </form>
+  
+    <ul class="list-group" *ngFor="let actor of actores" >
+      <li 
+      class="list-group-item d-flex justify-content-start lh-sm"
+      [ngClass]="{'selected': isSelected(actor)}"
+      (click)="selectCountry(actor)">
+        <div>
+          <h6 class="my-0 p-2">{{ actor.nombre }} - {{ actor.apellido }} </h6>
+          <h6 class="my-0 p-2">{{actor.email}}</h6>
+        </div>
+      </li>
+    </ul>
+  </section>
